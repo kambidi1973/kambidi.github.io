@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetSec Essentials | Network Security & Palo Alto Fundamentals</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #333;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #333;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>NetSec Essentials</h1>
+        <p>A Practical Guide to Palo Alto Firewalls & Network Security</p>
+    </header>
+
+    <nav>
+        <a href="#overview">Overview</a>
+        <a href="#architecture">Architecture & Zones</a>
+        <a href="#policy">Security Policies</a>
+        <a href="#lab">Lab Setup</a>
+    </nav>
+
+    <div class="container">
+        <section id="overview">
+            <h2>1. Introduction to Firewalls</h2>
+            <p>A firewall is a network security device that monitors and filters incoming and outgoing network traffic based on an organization's previously established security policies. At its most basic, a firewall is the barrier that sits between a secured internal network and an unsecured network, such as the Internet.</p>
+            <ul>
+                <li><strong>Stateless Firewalls:</strong> Inspect packets individually without tracking connection states.</li>
+                <li><strong>Stateful Firewalls:</strong> Track the state of active connections and determine which network packets to allow through.</li>
+                <li><strong>Next-Generation Firewalls (NGFW):</strong> Go beyond port/protocol inspection to include application awareness, integrated intrusion prevention (IPS), and cloud-delivered threat intelligence.</li>
+            </ul>
+        </section>
+
+        <section id="architecture">
+            <h2>2. Palo Alto Architecture & Security Zones</h2>
+            <p>Palo Alto Networks firewalls utilize a zone-based architecture. Traffic cannot flow between interfaces until those interfaces are assigned to zones, and security policies are created to allow traffic between those zones.</p>
+            <ul>
+                <li><strong>Internal (LAN):</strong> Trusted user network segment (e.g., <code>10.1.1.0/24</code>).</li>
+                <li><strong>DMZ (Demilitarized Zone):</strong> Semi-trusted zone housing publicly accessible services like web or voice servers.</li>
+                <li><strong>Untrust (Internet):</strong> Unsecured external network segment.</li>
+                <li><strong>Management Interface:</strong> Dedicated out-of-band management interface (e.g., <code>192.168.30.177</code>).</li>
+            </ul>
+        </section>
+
+        <section id="policy">
+            <h2>3. Security Policy Fundamentals</h2>
+            <p>Palo Alto firewalls evaluate rules from top to bottom. The first rule that matches the traffic criteria is applied.</p>
+            <ul>
+                <li><strong>Intra-zone Traffic:</strong> Allowed by default (traffic within the same zone).</li>
+                <li><strong>Inter-zone Traffic:</strong> Denied by default (traffic moving between different zones requires explicit allow rules).</li>
+                <li><strong>App-ID & User-ID:</strong> Enables rule enforcement based on specific applications (e.g., web-browsing, DNS, SIP) rather than just IP addresses and port numbers.</li>
+            </ul>
+        </section>
+
+        <section id="lab">
+            <h2>4. Lab Topology Example</h2>
+            <p>In a standard firewall lab environment, traffic flows from internal client machines through dedicated firewall interfaces before reaching external networks or DMZ servers:</p>
+            <ul>
+                <li>Client Workstation: <code>10.1.1.10</code> connected to Interface <code>eth1/1</code></li>
+                <li>DMZ Server: <code>20.1.1.1</code> connected to Interface <code>eth1/2</code></li>
+                <li>Egress Router / ISP: Connected to Interface <code>eth1/3</code></li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 NetSec Essentials. Hosted on GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
